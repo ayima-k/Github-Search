@@ -1,23 +1,26 @@
-import logo from './logo.svg';
-import './App.css';
-
+import Navbar from "./components/Navbar";
+import UserCard from "./components/UserCard";
+import { useDispatch,  useSelector } from 'react-redux'
+import { useEffect } from "react";
+import { fetchUsers } from "./redux/userSlice";
+ 
 function App() {
+  const dispatch = useDispatch()
+  const users = useSelector((state) => state.users)
+
+  const getUsers = async () => {
+    dispatch(fetchUsers())
+  }
+  useEffect(() => {
+    getUsers()
+  }, [])
+
+  console.log(users);
+  
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <Navbar/>
+      {/* <UserCard /> */}
     </div>
   );
 }
