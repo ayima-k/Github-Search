@@ -6,8 +6,8 @@ const ReposBlock = ({username}) => {
   const [data, setData] = React.useState(null)
   const [sort, setSort] = React.useState('all')
   const [type, setType] = React.useState('all')
-  const [lang, setLang] = React.useState('javascript')
-  const page = 1
+  const [lang, setLang] = React.useState('all')
+  const pages = 1
 
   const getRepos = async () => {
     return await axios.get(`https://api.github.com/users/${username}/repos?sort=${sort}`)
@@ -15,9 +15,22 @@ const ReposBlock = ({username}) => {
     .catch(e => console.log(e))
   }
 
-  React.useEffect(() => {
+  const sortType =  () => {
+    const newData = data?.filter(({visibility}) => type === 'all' ? visibility === visibility : visibility === type)
+    setData(newData)
+  }
+
+  const sortLang = () => {
+    const newData = data?.filter(({language}) => lang === 'all' ? language === language : language === lang)
+    setData(newData)
+  }
+
+  if (type === 'all' & lang === 'all' || type === 'public' & lang === 'all') {
     getRepos()
-  }, [data])
+  } else {
+    sortType()
+    sortLang()
+  }
 
   return (
     <div className={cls.reposBlock}>
@@ -30,11 +43,11 @@ const ReposBlock = ({username}) => {
         </select>
         <select name="language" onChange={(e) => setLang(e.target.value)}>
           <option value="type" hidden>Language</option>
-          <option value="all" className={cls.op} >All</option>
-          <option value="js" className={cls.op} >JavaScript</option>
-          <option value="ts" className={cls.op} >TypeScript</option>
-          <option value="html" className={cls.op} >HTML</option>
-          <option value="css" className={cls.op} >CSS</option>
+          <option value="all" className={cls.op}>All</option>
+          <option value="JavaScript" className={cls.op}>JavaScript</option>
+          <option value="TypeScript" className={cls.op}>TypeScript</option>
+          <option value="HTML" className={cls.op}>HTML</option>
+          <option value="CSS" className={cls.op}>CSS</option>
         </select>
         <select name="sort" onChange={(e) => setSort(e.target.value)}>
           <option value="sort" hidden>Sort</option>
@@ -59,10 +72,14 @@ const ReposBlock = ({username}) => {
           </h2>
         )
       }
-      <div className={cls.pagination}>
-        <button disabled={page === 1}>Previous </button>
-        <button>Next</button>
-      </div>
+      {
+        pages != 1 && (
+          <div className={cls.pagination}>
+            <button disabled={pages === 1}>Previous </button>
+            <button>Next</button>
+          </div>
+        )
+      }
     </div>
   )
 }

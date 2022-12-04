@@ -28,7 +28,7 @@ const Search = () => {
         value={value}
         onChange={(e) => onChangeInput(e.target.value)}
         type="text" 
-        placeholder='Search user...' 
+        placeholder='Search or jump to...' 
       />
     </>
   )

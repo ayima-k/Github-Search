@@ -30,7 +30,7 @@ const UserCard = ({ avatar_url, name, login, bio, followers, following, location
           </div>
         </div>
         <div>
-          <p>{bio}</p>
+          <p className={cls.bio}>{bio}</p>
         </div>
         <div>
           <Link 
