@@ -1,26 +1,29 @@
 import Navbar from "./components/Navbar";
 import UserCard from "./components/UserCard";
 import { useDispatch,  useSelector } from 'react-redux'
-import { useEffect } from "react";
-import { fetchUsers } from "./redux/userSlice";
+import { useEffect, useRef, useState } from "react";
+import { fetchUsers, setUsers } from "./redux/userSlice";
  
 function App() {
   const dispatch = useDispatch()
-  const users = useSelector((state) => state.users)
-
+  const isSearch = useRef(false)
+  const { items, searchValue } = useSelector((state) => state.users)
+  
   const getUsers = async () => {
-    dispatch(fetchUsers())
+    const user = 'users/ayima-k'
+    dispatch(fetchUsers({user}))
   }
   useEffect(() => {
-    getUsers()
-  }, [])
-
-  console.log(users);
+    if (!isSearch.current) {
+      getUsers()
+    }
+    isSearch.current = false
+  }, [searchValue])
   
   return (
     <div className="App">
-      <Navbar/>
-      {/* <UserCard /> */}
+      <Navbar />
+      <UserCard {...items} />
     </div>
   );
 }

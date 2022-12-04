@@ -1,0 +1,90 @@
+.reposBlock{
+  .block{
+    display: flex;
+    justify-content: flex-start;
+    flex-wrap: wrap;
+    margin-top: 1rem;
+    select{
+      background-color: #21262d;
+      color: #C9D1D9;
+      border-color: rgba(240,246,252,0.1);
+      padding: 8px 16px;
+      line-height: 20px;
+      font-size: 18px;
+      border-radius: 6px;
+      margin-left: 6px;
+      outline: 0;
+      cursor: pointer;
+      &:hover{
+        background-color:  #6e76815d;
+        border-color: rgba(240, 246, 252, 0.327);
+      }
+      &:hover .op{
+        background-color: #21262d;
+      }
+    }
+  }
+  h2{
+    color: #58A6FF;
+    font-size: 25px;
+    font-weight: 500;
+    height: 120px;
+    border-bottom: 1px solid rgb(72, 69, 69);
+    cursor: pointer;
+    span{
+      color: rgb(156, 154, 154);
+      font-size: 15px;
+      border: 0.3px solid rgb(99, 99, 99);
+      border-radius: 10px;
+      padding: 3px 5px;
+      margin-left: 10px;
+      text-transform: capitalize;
+      text-decoration: none;
+    }
+    p{
+      font-size: 15px;
+      color: rgb(156, 154, 154);
+    }
+    .yellow, .red, .blue{
+      background-color: #F1E05A;
+      border-radius: 50%;
+      margin: 0;
+      padding: 1px 9px !important;
+      border: none;
+    }
+    .red{
+      background-color: #E34C26;
+    }
+    .blue{
+      background-color: #3178C6;
+    }
+  }
+  .pagination{
+    display: flex;
+    justify-content: center;
+    button{
+      background: none;
+      outline: none;
+      border: 0;
+      color: #58A6FF;
+      font-size: 18px;
+      cursor: pointer;
+      font-weight: 500;
+      transition: .1s;
+      border-radius: 10px;
+      padding: 10px 15px;
+      border: 0.3px solid #0D1117;
+      &:hover{
+        border: 0.3px solid rgba(105, 102, 102, 0.674);
+      }
+      &:disabled{
+        color: #8B94;
+        cursor: default;
+        border: none;
+        &:hover{
+          border: none;
+        }
+      }
+    }
+  }
+}

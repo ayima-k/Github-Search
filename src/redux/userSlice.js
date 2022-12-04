@@ -1,18 +1,19 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit'
 import axios  from 'axios'
 
-export const fetchUsers = createAsyncThunk('users/fetchUsersStatus', async() => {
-  // const { hello } = params
-  const { users } = await axios.get(
-    `https://api.github.com/users/ayima-k`
+export const fetchUsers = createAsyncThunk('users/fetchUsersStatus', async(params) => {
+  const { user } = params
+  const users = await axios.get(
+    `https://api.github.com/${user}`
   )
-  .then(r => console.log(r.data))
+  .then(r => r.data)
   .catch(e => console.log(e))
   return users;
 })
 
 const initialState = { 
   items: [],
+  searchValue: ' ',
   status: 'loading'
 }
 
@@ -21,7 +22,10 @@ const userSlice = createSlice({
   initialState,
   reducers: {
     setUsers(state, action) {
-      state.users = action.payload
+      state.items = action.payload
+    },
+    setSearchValue(state, action) {
+      state.searchValue = action.payload
     }
   },
   extraReducers: (builder) => {
@@ -40,6 +44,6 @@ const userSlice = createSlice({
   }
 })
 
-export const { setUsers } = userSlice.actions
+export const { setUsers, setSearchValue } = userSlice.actions
 
 export default userSlice.reducer

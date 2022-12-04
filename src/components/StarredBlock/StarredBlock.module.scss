@@ -1,0 +1,35 @@
+h2{
+  color: #58A6FF;
+  font-size: 25px;
+  font-weight: 500;
+  height: 120px;
+  border-bottom: 1px solid rgb(72, 69, 69);
+  cursor: pointer;
+  span{
+    color: rgb(156, 154, 154);
+    font-size: 15px;
+    border: 0.3px solid rgb(99, 99, 99);
+    border-radius: 10px;
+    padding: 3px 5px;
+    margin-left: 10px;
+    text-transform: capitalize;
+    text-decoration: none;
+  }
+  p{
+    font-size: 15px;
+    color: rgb(156, 154, 154);
+  }
+  .yellow, .red, .blue{
+    background-color: #F1E05A;
+    border-radius: 50%;
+    margin: 0;
+    padding: 1px 9px !important;
+    border: none;
+  }
+  .red{
+    background-color: #E34C26;
+  }
+  .blue{
+    background-color: #3178C6;
+  }
+}
